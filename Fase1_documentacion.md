@@ -1,11 +1,18 @@
 # Módulo 3 - Ejercicio Evaluación Final
 
-### PREGUNTAS PILI
-- Arreglar las bbdd? nombres columnas minúscula y sin espacios?
+### ANOTACIONES
+- Arreglar las bbdd? nombres columnas minúscula y sin espacios? El EDA lo he hecho tal y como venían.
+PUEDO ESPECIFICAR EN EL README QUE SE PODRÍA HACER SI FUERA NECESARIO PERO QUE POR AHORA SE MANTIENEN.
 
-- Points Accumulated es de tipo float, sí que hay algunos valores con decimales, tienen sentido? (ejemplo: np.float64(16.2), np.float64(16.25))
+- Lógica de negocios: Es normal que la acumulación sea más granular (floats) y el canje sea solo en números enteros. La diferencia en tipo de dato refleja esta lógica de negocio, no es un error.
 
-- Confirmar lógica de negocios: Es normal que la acumulación sea más granular (floats) y el canje sea solo en números enteros. La diferencia en tipo de dato refleja esta lógica de negocio, no es un error.
+- Salary tiene valores negativos, se considera un error de inserción de los datos y se pasan a valores absolutos.
+
+- Al analizar columnas con las funciones, quedan output cells largas. Las he analizado a trozos pero no sé si dejarlas o no. Si hacemos un run all va un pelín lento. - Guardar una copia de este archivo haciendo clear all outputs.
+
+- Nulls cancellation years/month, son float porque hay nans --> NEXT STEP: Crear una columna que categorice esos nulos SI/NO.
+
+- Nulls salary --> Analizar cómo gestionarlos.
 
 ### Fase 1 - Exploración
 
@@ -34,3 +41,40 @@ EDA del archivo Customer Flight Activity:
     - Points Redeemed --> Variable fuertemente sesgada a la derecha, mayoría sin canjes y pocos canjes grandes. El 25%, 50% y 75% percentiles son 0, lo que indica que al menos el 75% de los clientes no han canjeado puntos. La media és muy por encima de la mediana porque un pequeño grupo de clientes canjea muchos puntos. Alta desviación estándard que refleja una gran dispersión.
 
     - Dollar Cost Points Redeemed --> El 75% de los valores son 0, lo que indica que la mayoría no canjearon puntos. La media es baja (2.5) pero hay casos con costos altos de hasta 71 dólares, por eso también hay una desviación estándar alta (alta dispersión).
+
+
+EDA del archivo Customer Loyalty History:
+
+    - En este df no hay filas duplicadas.
+
+    - Loyalty Number 
+
+    - Country --> Solo hay 1 país en todo el df, Canadá.
+
+    - Province --> Las províncias con mayor frecuencia relativa son: Ontario (32.29%), British Columbia (26.34%) y Quebec (19.72%). Las que tienen una menor frecuencia relativa: Yukon (0.66%) y Prince Edward Island (0.39%). Hay un total de 11 valores únicos.
+
+    - City --> Las ciudades con mayor frecuencia relativa son: Toronto (20.02%), Vancouver (15.43%) y Montreal (12.30%). Se consideran categorías raras (< 1.0%) 4 ciudades: Peace River (0.68%), Whitehorse (0.66%), Kelowna (0.53%), Charlottetown (0.39%). Hay un total de 29 valores únicos.
+
+    - Postal Code --> Hay 55 categorías distintas. Estan formados por combinaciones de letras y números (categórica).
+
+    - Gender --> Female (50.25%) y Male (49.75%).
+
+    - Education --> 5 Categorías distintas. Frecuencias relativas (%): Bachelor (62.59%), College (25.32%), High School or Below (4.67%), Doctor (4.39%), Master (3.04%).
+
+    - Salary --> Tiene NULLS, un 25.32% de los datos. Tiene 20 valores negativos, se considera un error de inserción de los datos y se corrigen convirtiéndolos en valores absolutos. Habrá que tomar decisiones con los Nulls posteriormente.
+
+    - Marital Status --> 3 categorías diferentes. Frecuencias relativas (%): Married (58.16%), Single (26.79%), Divorced (15.04%).
+
+    - Loyalty Card --> 3 categorías diferentes. Frecuencias relativas (%): Star (45.63%), Nova (33.88%), Aurora (20.49%).
+
+    - CLV --> Tiene una desviación estándar alta, valores dispersos. Mediana menor que la media, distribución sesgada a la derecha: 'long tail'. 
+
+    - Enrollment Type --> 2 categorías diferentes. Frecuencias relativas (%): Standard (94.2%), 2018 Promotion (5.8%).
+
+    - Enrollment Year --> Valores discretos y limitados (2012 a 2018). La mayoría de clientes (18%) se inscribieron en el 2018. El 2012 fue el año con menor proporción (10%).
+
+    - Enrollment Month --> Valores discretos y limitados (1 a 12). No hay nada a destacar en ningún mes en concreto, la frecuencia de cada mes es muy parecida.
+
+    - Cancellation Year --> Tiene NULLS, un 87.65% de los datos. Es de tipo float debido a la presencia de nans. Valores únicos sin nan: 2012 - 2018. Progresivamente han ido cancelando, máximo de cancelaciones en 2018 (31.2%).
+
+    - Cancellation Month --> Tiene NULLS, un 87.65% de los datos. Es de tipo float debido a la presencia de nans. Valores discretos y limitados (1 a 12) sin incluir nans. Se observan mayores cancelaciones sobretodo en los meses de noviembre (10.26%) y diciembre (10.30%) seguidos de cerca por agosto (10.06%). Meses con menos cancelaciones son abril (6.58%) y febrero (6.72%).

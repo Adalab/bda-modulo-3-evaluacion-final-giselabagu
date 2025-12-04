@@ -99,7 +99,7 @@ def comparar_correlaciones(df, var1_name, var2_name, umbral_diferencia=0.1, most
     
     # Mostrar scatter plot si se solicita
     if mostrar_plot:
-        plt.figure(figsize=(10, 6))
+        plt.figure(figsize=(8, 5))
         plt.scatter(datos_validos[var1_name], datos_validos[var2_name], 
                    alpha=0.5, edgecolors='k', linewidth=0.5)
         plt.xlabel(var1_name, fontsize=12)
@@ -125,7 +125,7 @@ def comparar_correlaciones(df, var1_name, var2_name, umbral_diferencia=0.1, most
         'interpretacion': interpretacion
     }
 
-def matriz_correlacion_visual(df, metodo='pearson', figsize=(15, 15), cmap='mako', 
+def matriz_correlacion_visual(df, metodo='pearson', figsize=(8, 6), cmap='mako', 
                               annot=True, fmt='.2f', solo_triangulo=True):
     """
     Crea un heatmap visual de la matriz de correlación de un DataFrame.

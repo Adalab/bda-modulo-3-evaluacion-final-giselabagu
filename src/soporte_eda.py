@@ -35,7 +35,7 @@ def exploracion_basica(dataframe, secciones=None):
         print(f"Forma (filas, columnas): {dataframe.shape}")
         print(f"Columnas: {list(dataframe.columns)}")
         print("\nResumen info():")
-        dataframe.info()
+        dataframe.info()        # poner display
         print('--------------------------------------------------------------------------')
 
     if 'nulos' in secciones:
@@ -205,7 +205,7 @@ def exploracion_cat(dataframe, col, graficos=True, mostrar_tablas=True, top=10, 
         Número de categorías más frecuentes a mostrar en tablas y gráficos.
     detectar_raras : bool, opcional (default=True)
         Si True, detecta categorías con muy poca frecuencia.
-    umbral_raras : float, opcional (default=0.01)
+    umbral_raras : float, opcional (default=0.01)       # valor práctico y comúnmente usado en análisis exploratorios.
         Proporción mínima para considerar una categoría como "rara".
     figsize : tuple, opcional
         Tamaño de los gráficos.
@@ -233,6 +233,7 @@ def exploracion_cat(dataframe, col, graficos=True, mostrar_tablas=True, top=10, 
     modo = serie.mode(dropna=False)[0]
     cardinalidad = serie.nunique(dropna=False)
 
+    print('--------------------------------------------------------------------------')
     print(f"\n📊 Exploración categórica de '{col}':")
     print(f" - Moda: {modo}")
     print(f" - Cardinalidad (nº de categorías distintas): {cardinalidad}")
@@ -244,6 +245,7 @@ def exploracion_cat(dataframe, col, graficos=True, mostrar_tablas=True, top=10, 
     frecuencias_rel = serie.value_counts(normalize=True, dropna=False).round(4) * 100
 
     if mostrar_tablas:
+        print('--------------------------------------------------------------------------')
         print("\nFrecuencias absolutas (completas):")
         display(frecuencias_abs)
 
@@ -259,6 +261,7 @@ def exploracion_cat(dataframe, col, graficos=True, mostrar_tablas=True, top=10, 
     categorias_raras = None
     if detectar_raras:
         categorias_raras = frecuencias_rel[frecuencias_rel < (umbral_raras * 100)]
+        print('--------------------------------------------------------------------------')
         print(f"\n🔍 Categorías raras (< {umbral_raras*100}%): {len(categorias_raras)}")
         if len(categorias_raras) > 0:
             display(categorias_raras)
@@ -267,6 +270,7 @@ def exploracion_cat(dataframe, col, graficos=True, mostrar_tablas=True, top=10, 
     # GRÁFICOS
     # ---------------------------------------------------------
     if graficos:
+        print('--------------------------------------------------------------------------')
         plt.figure(figsize=figsize)
 
         # --- Countplot ---
