@@ -1,18 +1,21 @@
 # Módulo 3 - Ejercicio Evaluación Final
 
+
 ### ANOTACIONES
-- Arreglar las bbdd? nombres columnas minúscula y sin espacios? El EDA lo he hecho tal y como venían.
-PUEDO ESPECIFICAR EN EL README QUE SE PODRÍA HACER SI FUERA NECESARIO PERO QUE POR AHORA SE MANTIENEN.
+- Se decide trabajar con los nombres originales de las bases de datos, incluyendo espacios y mayúsculas. Para facilitar el trabajo con dichas bbdd, se podrían convertir fácilmente si fuera necesario. Por el momento se mantienen para evitar posibles errores con bbdd ya existentes.
 
-- Lógica de negocios: Es normal que la acumulación sea más granular (floats) y el canje sea solo en números enteros. La diferencia en tipo de dato refleja esta lógica de negocio, no es un error.
+- Lógica de negocios: Es normal que la acumulación ('Points Accumulated') sea más granular (floats) y el canje ('Points Redeemed') sea solo en números enteros. La diferencia en tipo de dato refleja esta lógica de negocio, no es un error.
 
-- Salary tiene valores negativos, se considera un error de inserción de los datos y se pasan a valores absolutos.
+- 'Salary' tiene valores negativos, se considera un error de inserción de los datos y se pasan a valores absolutos.
 
-- Al analizar columnas con las funciones, quedan output cells largas. Las he analizado a trozos pero no sé si dejarlas o no. Si hacemos un run all va un pelín lento. - Guardar una copia de este archivo haciendo clear all outputs.
+- Nulls 'Cancellation Years/Month' --> son de tipo float porque hay NaNs. Estos nulos corresponden a que todavía no se ha cancelado la correspondiente subscripción, por lo que tiene sentido su existencia y se mantienen. --> NEXT STEP: Se podría crear una columna que categorice esos nulos SI/NO.
 
-- Nulls cancellation years/month, son float porque hay nans --> NEXT STEP: Crear una columna que categorice esos nulos SI/NO.
+- Nulls 'Salary' --> Se observa que coinciden todos los valores nulos de salary con la categoría College de la columna Education. Teniendo en cuenta que en Canadá el orden de Educación es el siguiente (de menos a más): High School or Below --> Educación secundaria, College	Formación Profesional --> Formación profesional post-secundaria, Bachelor --> Universidad (título de grado), Master	-->	Estudios de postgrado, Doctor --> Doctorado académico. Y que está clasificación coincide con las diferencias de salario (a mayor nivel de educación, mayor salario), se determina rellenar los nulos con un valor intermedio entre la mediana de High School or Below y Bachelor. Mediana y no media porque la mediana es más robusta ante valores extremos o outliers.
 
-- Nulls salary --> Analizar cómo gestionarlos.
+- Al analizar columnas con las funciones de soporte, quedan celdas de output largas. Realizar un Run All, puede tardar varios segundos. Existe el archivo Fase1_EDA_Limpieza_SinOutputCells.ipynb, una copia del archivo original Fase1_EDA_Limpieza.ipynb sin los outputs cargados.
+
+- La última celda del archivo Fase1_EDA_Limpieza.ipynb crea un csv final llamado df_completo.csv dónde están unidos mediante un merge (inner join) los dos csv originales ya transformados y limpios. Este nuevo archivo no está subido al repositorio para evitar una sobrecarga de peso.
+
 
 ### Fase 1 - Exploración
 
