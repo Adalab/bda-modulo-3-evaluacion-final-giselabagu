@@ -20,6 +20,11 @@ El proyecto está organizado siguiendo buenas prácticas de estructura, document
 │   ├── Customer Loyalty History.csv
 │   └── customer_summary.csv        # generado en Fase 1 (no incluido por peso)
 │
+├── images/
+│   ├── relacion_distancia_puntos.png
+│   ├── relacion_salariopromedio_educacion.png
+│   └── relacion_totalvuelos_mes.png  
+│
 ├── src/
 │   ├── soporte_eda.py
 │   ├── soporte_correlacion.py
