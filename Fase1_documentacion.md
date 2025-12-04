@@ -1,22 +1,5 @@
 # Módulo 3 - Ejercicio Evaluación Final
 
-
-### ANOTACIONES
-- Se decide trabajar con los nombres originales de las bases de datos, incluyendo espacios y mayúsculas. Para facilitar el trabajo con dichas bbdd, se podrían convertir fácilmente si fuera necesario. Por el momento se mantienen para evitar posibles errores con bbdd ya existentes.
-
-- Lógica de negocios: Es normal que la acumulación ('Points Accumulated') sea más granular (floats) y el canje ('Points Redeemed') sea solo en números enteros. La diferencia en tipo de dato refleja esta lógica de negocio, no es un error.
-
-- 'Salary' tiene valores negativos, se considera un error de inserción de los datos y se pasan a valores absolutos.
-
-- Nulls 'Cancellation Years/Month' --> son de tipo float porque hay NaNs. Estos nulos corresponden a que todavía no se ha cancelado la correspondiente subscripción, por lo que tiene sentido su existencia y se mantienen. --> NEXT STEP: Se podría crear una columna que categorice esos nulos SI/NO.
-
-- Nulls 'Salary' --> Se observa que coinciden todos los valores nulos de salary con la categoría College de la columna Education. Teniendo en cuenta que en Canadá el orden de Educación es el siguiente (de menos a más): High School or Below --> Educación secundaria, College	Formación Profesional --> Formación profesional post-secundaria, Bachelor --> Universidad (título de grado), Master	-->	Estudios de postgrado, Doctor --> Doctorado académico. Y que está clasificación coincide con las diferencias de salario (a mayor nivel de educación, mayor salario), se determina rellenar los nulos con un valor intermedio entre la mediana de High School or Below y Bachelor. Mediana y no media porque la mediana es más robusta ante valores extremos o outliers.
-
-- Al analizar columnas con las funciones de soporte, quedan celdas de output largas. Realizar un Run All, puede tardar varios segundos. Existe el archivo Fase1_EDA_Limpieza_SinOutputCells.ipynb, una copia del archivo original Fase1_EDA_Limpieza.ipynb sin los outputs cargados.
-
-- La última celda del archivo Fase1_EDA_Limpieza.ipynb crea un csv final llamado df_completo.csv dónde están unidos mediante un merge (inner join) los dos csv originales ya transformados y limpios. Este nuevo archivo no está subido al repositorio para evitar una sobrecarga de peso.
-
-
 ### Fase 1 - Exploración
 
 EDA del archivo Customer Flight Activity:
@@ -81,3 +64,22 @@ EDA del archivo Customer Loyalty History:
     - Cancellation Year --> Tiene NULLS, un 87.65% de los datos. Es de tipo float debido a la presencia de nans. Valores únicos sin nan: 2012 - 2018. Progresivamente han ido cancelando, máximo de cancelaciones en 2018 (31.2%).
 
     - Cancellation Month --> Tiene NULLS, un 87.65% de los datos. Es de tipo float debido a la presencia de nans. Valores discretos y limitados (1 a 12) sin incluir nans. Se observan mayores cancelaciones sobretodo en los meses de noviembre (10.26%) y diciembre (10.30%) seguidos de cerca por agosto (10.06%). Meses con menos cancelaciones son abril (6.58%) y febrero (6.72%).
+
+
+
+### Fase 1 - Transformación
+
+### ANOTACIONES
+- Se decide trabajar con los nombres originales de las bases de datos, incluyendo espacios y mayúsculas. Para facilitar el trabajo con dichas bbdd, se podrían convertir fácilmente si fuera necesario. Por el momento se mantienen para evitar posibles errores con bbdd ya existentes.
+
+- Lógica de negocios: Es normal que la acumulación ('Points Accumulated') sea más granular (floats) y el canje ('Points Redeemed') sea solo en números enteros. La diferencia en tipo de dato refleja esta lógica de negocio, no es un error.
+
+- 'Salary' tiene valores negativos, se considera un error de inserción de los datos y se pasan a valores absolutos.
+
+- Nulls 'Cancellation Years/Month' --> son de tipo float porque hay NaNs. Estos nulos corresponden a que todavía no se ha cancelado la correspondiente subscripción, por lo que tiene sentido su existencia y se mantienen. --> NEXT STEP: Se podría crear una columna que categorice esos nulos SI/NO.
+
+- Nulls 'Salary' --> Se observa que coinciden todos los valores nulos de salary con la categoría College de la columna Education. Teniendo en cuenta que en Canadá el orden de Educación es el siguiente (de menos a más): High School or Below --> Educación secundaria, College	Formación Profesional --> Formación profesional post-secundaria, Bachelor --> Universidad (título de grado), Master	-->	Estudios de postgrado, Doctor --> Doctorado académico. Y que está clasificación coincide con las diferencias de salario (a mayor nivel de educación, mayor salario), se determina rellenar los nulos con un valor intermedio entre la mediana de High School or Below y Bachelor. Mediana y no media porque la mediana es más robusta ante valores extremos o outliers.
+
+- Al analizar columnas con las funciones de soporte, quedan celdas de output largas. Realizar un Run All, puede tardar varios segundos. Existe el archivo Fase1_EDA_Limpieza_SinOutputCells.ipynb, una copia del archivo original Fase1_EDA_Limpieza.ipynb sin los outputs cargados.
+
+- La última celda del archivo Fase1_EDA_Limpieza.ipynb crea un csv final llamado df_completo.csv dónde están unidos mediante un merge (inner join) los dos csv originales ya transformados y limpios. Este nuevo archivo no está subido al repositorio para evitar una sobrecarga de peso.
