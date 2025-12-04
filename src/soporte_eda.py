@@ -52,7 +52,7 @@ def exploracion_basica(dataframe, secciones=None):
         num_cols = dataframe.select_dtypes(include=['number']).columns
         if len(num_cols) > 0:
             print("\n### Estadísticas descriptivas para variables numéricas ###")
-            print(dataframe[num_cols].describe().T)
+            display(dataframe[num_cols].describe().T)
         else:
             print("\n### No hay columnas numéricas para describir ###")
             print('--------------------------------------------------------------------------')
@@ -61,7 +61,7 @@ def exploracion_basica(dataframe, secciones=None):
         cat_cols = dataframe.select_dtypes(include=['object', 'category']).columns
         if len(cat_cols) > 0:
             print("\n### Estadísticas descriptivas para variables categóricas ###")
-            print(dataframe[cat_cols].describe().T)
+            display(dataframe[cat_cols].describe().T)
         else:
             print("\n### No hay columnas categóricas para describir ###")
 
