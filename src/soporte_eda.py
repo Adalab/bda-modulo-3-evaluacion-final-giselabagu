@@ -142,10 +142,18 @@ def exploracion_num(dataframe, col, graficos=True, mostrar_estadisticas=True, mo
         Q3 = serie.quantile(0.75)
         IQR = Q3 - Q1
 
-        outliers = dataframe[(dataframe[col] < Q1 - 1.5 * IQR) | (dataframe[col] > Q3 + 1.5 * IQR)]
+        outliers = serie[(serie < Q1 - 1.5 * IQR) | (serie > Q3 + 1.5 * IQR)]
+        conteo_outliers = outliers.value_counts()
+        outliers_ids_por_valor = outliers.groupby(outliers).apply(lambda x: x.index.tolist()).to_dict()
 
         print(f"\n🔍 Número de outliers detectados: {outliers.shape[0]}")
-        stats_dict["outliers"] = outliers
+        print("Conteo de outliers por valor único:")
+        print(conteo_outliers)
+        print('--------------------------------------------------------------------------')
+
+        stats_dict["outliers_count"] = int(outliers.shape[0])
+        stats_dict["outliers_unique_values"] = conteo_outliers.to_dict()        # dict con valores y su cuenta.
+        #stats_dict["outliers_ids_by_value"] = outliers_ids_por_valor            # lista de IDs de los outliers.
 
     # ---------------------------------------------------------
     # GRÁFICOS
@@ -169,12 +177,9 @@ def exploracion_num(dataframe, col, graficos=True, mostrar_estadisticas=True, mo
         sns.violinplot(x=serie)
         plt.title(f"Violin plot de {col}")
 
-        # --- QQ-Plot ---
-        plt.subplot(2, 2, 4)
-        stats.probplot(serie, dist="norm", plot=plt)
-        plt.title(f"QQ-Plot de {col}")
+        plt.tight_layout(pad=3.0)  # ajusta el espaciado automáticamente
+        # o en vez de tight_layout: plt.subplots_adjust(hspace=0.4, wspace=0.3)
 
-        plt.tight_layout()
         plt.show()
 
     print('--------------------------------------------------------------------------')
