@@ -92,7 +92,7 @@ En esta fase se elaboraron visualizaciones para responder las preguntas analíti
 
 - Meses con menor actividad: enero, febrero, marzo, abril y noviembre.
 
-![Distribución de vuelos reservados por mes](images\relacion_totalvuelos_mes.png)
+![Distribución de vuelos reservados por mes](images/relacion_totalvuelos_mes.png)
 
 *Figura 1: Gráfico de barras que muestra la cantidad de vuelos reservados por mes, evidenciando estacionalidad.*
 
@@ -108,7 +108,7 @@ En esta fase se elaboraron visualizaciones para responder las preguntas analíti
 
 - Next step recomendado: investigar el patrón de la 4ª línea residual detectada.
 
-![Relación entre distancia y puntos acumulados](images\relacion_distancia_puntos.png)
+![Relación entre distancia y puntos acumulados](images/relacion_distancia_puntos.png)
 
 *Figura 2: Scatterplot que muestra la relación entre la distancia volada y los puntos acumulados, diferenciando por tipo de tarjeta de lealtad.*
 
@@ -124,7 +124,7 @@ Ontario (32%), British Columbia (26%) y Quebec (20%).
 
 - Salarios imputados para College colocados coherentemente entre High School y Bachelor.
 
-![Salario promedio por nivel educativo](images\relacion_salariopromedio_educacion.png)
+![Salario promedio por nivel educativo](images/relacion_salariopromedio_educacion.png)
 
 *Figura 3: Salario promedio según el nivel educativo.*
 
