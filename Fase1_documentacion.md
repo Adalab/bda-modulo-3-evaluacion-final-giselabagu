@@ -8,32 +8,34 @@ EDA del archivo Customer Flight Activity:
 
     - NaNs o nulos: No hay ningún nan en todo el df.
 
-    - Loyalty Number --> identificador único para cada cliente.
+    - Loyalty Number --> identificador único para cada cliente dentro del programa de lealtad de la aerolínea.
 
     - Year --> solo tiene 2 valores únicos: 2017 y 2018
 
     - Month --> Cualquiera de todos los meses del año (1 - 12) Tiene una distribución igual para cada mes porque se han introducido datos por id cliente haya tomado vuelos o no.
 
-    - Flights Booked --> Distribución extremadamente sesgada hacia la derecha (el 48.58% del dataset tiene 0 vuelos, solo el 25% superior supera los 8 vuelos). Distribución 'long tail'.
+    - Flights Booked --> Distribución extremadamente sesgada hacia la derecha (el 48.58% del dataset tiene 0 vuelos, solo el 25% superior supera los 8 vuelos). Distribución 'long tail'. Tiene varios ouliers que podrían estudiarse más profundamente como Next Steps.
 
-    - Flights with Companions --> Distribución muy sesgada a la derecha. Percentil 25% = 0 --> Más del 50% de los clientes nunca volaron con acompañantes. Distribución 'long tail'.
+    - Flights with Companions --> Distribución muy sesgada a la derecha. Percentil 25% = 0 --> Más del 50% de los clientes nunca volaron con acompañantes. Distribución 'long tail'. Tiene varios ouliers que podrían estudiarse más profundamente como Next Steps.
 
-    - Total Flights --> Distribución extremadamente sesgada a la derecha. Percentil 25% = 0 --> Al menos el 25% no han volado nunca y al menos el 50% han volado como mucho 1 vez. La media es mayor porque hay un grupo más pequeño de clientes que voló muchas veces, el 25% superior viaja bastante (+10 viajes). Distribución 'long tail'.
+    - Total Flights --> Distribución extremadamente sesgada a la derecha. Percentil 25% = 0 --> Al menos el 25% no han volado nunca y al menos el 50% han volado como mucho 1 vez. La media es mayor porque hay un grupo más pequeño de clientes que voló muchas veces, el 25% superior viaja bastante (+10 viajes). Distribución 'long tail'. Tiene varios ouliers que podrían estudiarse más profundamente como Next Steps.
 
-    - Distance --> Mucha diversidad en las distancias (muchos valores únicos). Distribución muy sesgada a la derecha: Percentil 25% = 0, la mediana es mucho menor que la media, la 'long tail' sube la media. Alta desviación estándard que refleja una gran dispersión.
+    - Distance --> Mucha diversidad en las distancias (muchos valores únicos). Distribución muy sesgada a la derecha: Percentil 25% = 0, la mediana es mucho menor que la media, la 'long tail' sube la media. Alta desviación estándard que refleja una gran dispersión. Tiene bastantes ouliers que podrían estudiarse más profundamente como Next Steps.
 
-    - Points Accumulated --> Única columna de tipo float64. El 25% tienen 0 puntos acumulados, un cuarto de los clientes no ha acumulado puntos. La distribución está sesgada a la derecha, con unos pocos clientes acumulando muchos puntos, por eso la media es más del doble que la mediana. Alta desviación estándard que refleja una gran dispersión. El valor 0 es importante y refleja falta de participación o uso del programa.
+    - Points Accumulated --> Única columna de tipo float64. El 25% tienen 0 puntos acumulados, un cuarto de los clientes no ha acumulado puntos. La distribución está sesgada a la derecha, con unos pocos clientes acumulando muchos puntos, por eso la media es más del doble que la mediana. Alta desviación estándard que refleja una gran dispersión. El valor 0 es importante y refleja falta de participación o uso del programa. Tiene bastantes ouliers que podrían estudiarse más profundamente como Next Steps.
 
-    - Points Redeemed --> Variable fuertemente sesgada a la derecha, mayoría sin canjes y pocos canjes grandes. El 25%, 50% y 75% percentiles son 0, lo que indica que al menos el 75% de los clientes no han canjeado puntos. La media és muy por encima de la mediana porque un pequeño grupo de clientes canjea muchos puntos. Alta desviación estándard que refleja una gran dispersión.
+    - Points Redeemed --> Variable fuertemente sesgada a la derecha, mayoría sin canjes y pocos canjes grandes. El 25%, 50% y 75% percentiles son 0, lo que indica que al menos el 75% de los clientes no han canjeado puntos. La media és muy por encima de la mediana porque un pequeño grupo de clientes canjea muchos puntos. Alta desviación estándard que refleja una gran dispersión. Prácticamente se consideran outliers todos los valores diferentes de 0.
 
-    - Dollar Cost Points Redeemed --> El 75% de los valores son 0, lo que indica que la mayoría no canjearon puntos. La media es baja (2.5) pero hay casos con costos altos de hasta 71 dólares, por eso también hay una desviación estándar alta (alta dispersión).
+    - Dollar Cost Points Redeemed --> El 75% de los valores son 0, lo que indica que la mayoría no canjearon puntos. La media es baja (2.5) pero hay casos con costos altos de hasta 71 dólares, por eso también hay una desviación estándar alta (alta dispersión). Al igual que en 'Points Redeemed', se consideran outliers todos los valores diferentes de 0. 
+
+    - Se comprueba que estas 3 últimas variables 'Points Redeemed', 'Dollar Cost Points Redeemed' y 'Points Accumulated' están correlacionadas, tanto los ceros como los outliers. Como conslusión, se podría añadir que más personas acumulan puntos que las que después los gastan: Points Accumulated > Points Redeemed para la mayoría de clientes.
 
 
 EDA del archivo Customer Loyalty History:
 
     - En este df no hay filas duplicadas.
 
-    - Loyalty Number 
+    - Loyalty Number --> identificador único para cada cliente dentro del programa de lealtad de la aerolínea.
 
     - Country --> Solo hay 1 país en todo el df, Canadá.
 
@@ -82,4 +84,4 @@ EDA del archivo Customer Loyalty History:
 
 - Al analizar columnas con las funciones de soporte, quedan celdas de output largas. Realizar un Run All, puede tardar varios segundos. Existe el archivo Fase1_EDA_Limpieza_SinOutputCells.ipynb, una copia del archivo original Fase1_EDA_Limpieza.ipynb sin los outputs cargados.
 
-- La última celda del archivo Fase1_EDA_Limpieza.ipynb crea un csv final llamado df_completo.csv dónde están unidos mediante un merge (inner join) los dos csv originales ya transformados y limpios. Este nuevo archivo no está subido al repositorio para evitar una sobrecarga de peso.
+- La última celda del archivo Fase1_EDA_Limpieza.ipynb crea un csv final llamado customer_summary.csv donde están unidos mediante un merge (inner join) los dos csv originales ya transformados y limpios. Este nuevo archivo no está subido al repositorio para evitar una sobrecarga de peso.

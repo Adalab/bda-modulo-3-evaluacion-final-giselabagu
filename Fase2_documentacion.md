@@ -2,7 +2,9 @@
 
 ### Fase 2 - Análisis y Visualización
 
-Usando las herramientas de visualización que has aprendido durante este módulo, contesta a las siguientes gráficas usando la mejor gráfica que consideres:  
+Para realizar el análisis de la Fase 2, es necesario tener el archivo csv final generado por la última celda del archivo Fase1_EDA_Limpieza.ipynb, llamado customer_summary.csv. Corresponde a la unión mediante un merge (inner join) de los dos csv originales ya transformados y limpios. Este nuevo archivo no está subido al repositorio para evitar una sobrecarga de peso.
+
+#### Usando las herramientas de visualización que has aprendido durante este módulo, contesta a las siguientes gráficas usando la mejor gráfica que consideres:  
 
 1. ¿Cómo se distribuye la cantidad de vuelos reservados por mes durante el año?
 
